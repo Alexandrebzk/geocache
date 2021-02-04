@@ -1,4 +1,4 @@
-package ig2i.geocache.mysql.entities;
+package ig2i.geocache.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

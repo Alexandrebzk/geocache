@@ -1,5 +1,6 @@
-package ig2i.geocache.mysql.entities;
+package ig2i.geocache.entities;
 
+import ig2i.geocache.entities.Cache;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
