@@ -1,7 +1,7 @@
-package ig2i.geocache.repository;
+package ig2i.geocache.mongo.repository;
 import java.util.List;
 
-import ig2i.geocache.mysql.entities.User;
+import ig2i.geocache.entities.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
