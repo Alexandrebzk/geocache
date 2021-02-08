@@ -1,5 +1,6 @@
-package ig2i.geocache.entities;
+package ig2i.geocache.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -8,6 +9,8 @@ import javax.persistence.*;
 @Document(collection = "user")
 public class User {
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     @Column(name = "pseudo")
     private String pseudo;
@@ -17,8 +20,8 @@ public class User {
     private String description;
 
     public User() {
-
     }
+
     public User(String pseudo, String photo, String description) {
         this.pseudo = pseudo;
         this.photo = photo;
