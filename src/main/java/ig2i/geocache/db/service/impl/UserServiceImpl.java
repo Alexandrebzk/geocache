@@ -1,7 +1,7 @@
-package ig2i.geocache.db.service;
+package ig2i.geocache.db.service.impl;
 
-import ig2i.geocache.db.UserRepository;
-import ig2i.geocache.db.UserService;
+import ig2i.geocache.db.repository.UserRepository;
+import ig2i.geocache.db.service.UserService;
 import ig2i.geocache.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findCacheById(String id) {
+    public User findUserById(String id) {
         return userRepository.findById(id);
     }
 
@@ -32,7 +32,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User u) {
+    public User save(User u) {
         userRepository.save(u);
+        return u;
     }
 }

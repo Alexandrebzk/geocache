@@ -1,6 +1,7 @@
-package ig2i.geocache.db.mariadb.repository;
+package ig2i.geocache.db.repository.mariadb.impl;
 
-import ig2i.geocache.db.UserRepository;
+import ig2i.geocache.db.repository.UserRepository;
+import ig2i.geocache.db.repository.mariadb.UserJPARepository;
 import ig2i.geocache.entity.User;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;

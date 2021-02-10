@@ -1,6 +1,7 @@
-package ig2i.geocache.db.mongo.repository;
+package ig2i.geocache.db.repository.mongo.impl;
 
-import ig2i.geocache.db.UserRepository;
+import ig2i.geocache.db.repository.UserRepository;
+import ig2i.geocache.db.repository.mongo.UserMongoRepository;
 import ig2i.geocache.entity.User;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,7 @@ public class UserRepositoryImplMongo implements UserRepository {
 
     @Override
     public void save(User u) {
+        u.getCaches().forEach((cache -> cache.setProprietaire(null)));
         userMongoRepository.save(u);
     }
 
