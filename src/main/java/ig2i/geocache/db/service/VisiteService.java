@@ -13,4 +13,6 @@ public interface VisiteService {
     void deleteAll();
 
     Visite save(Visite u);
+
+    Visite saveWithCacheAndUser(Visite visite,String cacheId, String userId);
 }

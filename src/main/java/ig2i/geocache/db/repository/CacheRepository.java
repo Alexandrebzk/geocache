@@ -12,6 +12,8 @@ public interface CacheRepository {
 
     void deleteAll();
 
+    void delete(Cache c);
+
     List<Cache> findAll();
 
     Cache save(Cache u);

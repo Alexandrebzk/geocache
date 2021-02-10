@@ -1,9 +1,13 @@
 package ig2i.geocache.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Document("geocache")
@@ -26,8 +30,11 @@ public class Cache {
     private Lieu lieu;
     @ManyToOne
     private User proprietaire;
+    @OneToMany(mappedBy = "cache", cascade = CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Visite> visiteList = new ArrayList<>();
 
-    public Cache(){
+    public Cache() {
 
     }
 
@@ -38,6 +45,7 @@ public class Cache {
         this.etat = etat;
         this.geolocalisation = geolocalisation;
     }
+
     public Cache(String description, String type, String nature, String etat, String geolocalisation, User u) {
         this.description = description;
         this.type = type;
@@ -111,15 +119,35 @@ public class Cache {
         this.geolocalisation = geolocalisation;
     }
 
+    public List<Visite> getVisiteList() {
+        return visiteList;
+    }
+
+    public void setVisiteList(List<Visite> visiteList) {
+        this.visiteList = visiteList;
+    }
+
+    public void addVisite(Visite visite) {
+        this.visiteList.add(visite);
+    }
+
+    public boolean hasVisite(Visite v) {
+        for (Visite visite : this.visiteList)
+            if (visite.getId().equals(v.getId()))
+                return true;
+        return false;
+    }
+
     @Override
     public String toString() {
-        return "\nCache{" +
+        return "\n\tCache{" +
                 "id='" + id + '\'' +
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
                 ", nature='" + nature + '\'' +
                 ", etat='" + etat + '\'' +
                 ", geolocalisation='" + geolocalisation + '\'' +
+                ", visiteList='" + visiteList + '\'' +
                 ", lieu=" + (lieu != null ? lieu.getNom() : "null") +
                 ", proprietaire=" + (proprietaire != null ? proprietaire.getId() : "null") +
                 '}';

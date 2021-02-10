@@ -19,6 +19,10 @@ public class Visite {
     private String commentaire;
     @Column(name = "photo")
     private String photo;
+    @ManyToOne
+    private Cache cache;
+    @ManyToOne
+    private User user;
 
     public Visite() {
     }
@@ -31,6 +35,23 @@ public class Visite {
     public Visite(String commentaire, String photo) {
         this.commentaire = commentaire;
         this.photo = photo;
+        this.date_passage = new Date();
+    }
+
+    public Cache getCache() {
+        return cache;
+    }
+
+    public void setCache(Cache cache) {
+        this.cache = cache;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getId() {
@@ -67,11 +88,13 @@ public class Visite {
 
     @Override
     public String toString() {
-        return "\nVisite{" +
+        return "\n\tVisite{" +
                 "id='" + id + '\'' +
                 ", date_passage=" + date_passage +
                 ", commentaire='" + commentaire + '\'' +
                 ", photo='" + photo + '\'' +
+                ", cache=" + (cache != null ? cache.getId() : "null") +
+                ", user=" + (user != null ? user.getId() : "null") +
                 '}';
     }
 }

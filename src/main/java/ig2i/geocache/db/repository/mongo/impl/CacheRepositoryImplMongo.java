@@ -41,6 +41,10 @@ public class CacheRepositoryImplMongo implements CacheRepository {
     public void deleteAll() {
         cacheMongoRepository.deleteAll();
     }
+    @Override
+    public void delete(Cache c) {
+        cacheMongoRepository.delete(c);
+    }
 
     @Override
     public List<Cache> findAll() {

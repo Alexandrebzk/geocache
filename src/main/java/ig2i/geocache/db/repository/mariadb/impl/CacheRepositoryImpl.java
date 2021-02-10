@@ -39,6 +39,11 @@ public class CacheRepositoryImpl implements CacheRepository {
     }
 
     @Override
+    public void delete(Cache c) {
+        cacheJPARepository.delete(c);
+    }
+
+    @Override
     public List<Cache> findAll() {
         return cacheJPARepository.findAll();
     }

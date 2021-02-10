@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserMongoRepository extends MongoRepository<User, String>  {
+public interface UserMongoRepository extends MongoRepository<User, String> {
 
 
     @Override
@@ -15,7 +15,7 @@ public interface UserMongoRepository extends MongoRepository<User, String>  {
     List<User> findAll();
 
     @Override
-    @Query("{'_class':'ig2i.geocache.entity.User'}")
+    @Query("{'_class':'ig2i.geocache.entity.User', '_id' : ?0}")
     Optional<User> findById(String s);
 
     @Override

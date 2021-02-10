@@ -1,6 +1,8 @@
 package ig2i.geocache.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -22,18 +24,20 @@ public class User {
     private String photo;
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "proprietaire", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    private List<Cache> caches;
+    @OneToMany(mappedBy = "proprietaire", cascade = CascadeType.DETACH)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Cache> caches = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Visite> visiteList = new ArrayList<>();
 
     public User() {
-        this.caches = new ArrayList<>();
     }
 
     public User(String pseudo, String photo, String description) {
         this.pseudo = pseudo;
         this.photo = photo;
         this.description = description;
-        this.caches = new ArrayList<>();
     }
 
     public String getId() {
@@ -54,6 +58,32 @@ public class User {
 
     public void addCache(Cache cache) {
         this.caches.add(cache);
+    }
+
+    public boolean hasCache(Cache c) {
+        for (Cache cache : this.caches)
+            if (cache.getId().equals(c.getId()))
+                return true;
+        return false;
+    }
+
+    public List<Visite> getVisiteList() {
+        return visiteList;
+    }
+
+    public void setVisiteList(List<Visite> visiteList) {
+        this.visiteList = visiteList;
+    }
+
+    public void addVisite(Visite visite) {
+        this.visiteList.add(visite);
+    }
+
+    public boolean hasVisite(Visite v) {
+        for (Visite visite : this.visiteList)
+            if (visite.getId().equals(v.getId()))
+                return true;
+        return false;
     }
 
     public String getPseudo() {
@@ -88,6 +118,7 @@ public class User {
                 ", photo='" + photo + '\'' +
                 ", description='" + description + '\'' +
                 ", caches=" + caches +
+                ", visiteList=" + visiteList +
                 '}';
     }
 }

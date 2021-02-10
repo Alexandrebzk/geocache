@@ -25,8 +25,12 @@ public class VisiteRepositoryImplMongo implements VisiteRepository {
     }
 
     @Override
-    public void save(Visite u) {
-        visiteMongoRepository.save(u);
+    public void save(Visite v) {
+        if (v.getCache() != null)
+            v.getCache().setVisiteList(null);
+        if (v.getUser() != null)
+            v.getUser().setVisiteList(null);
+        visiteMongoRepository.save(v);
     }
 
     @Override

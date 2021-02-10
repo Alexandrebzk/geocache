@@ -14,7 +14,7 @@ public interface CacheMongoRepository extends MongoRepository<Cache, String>  {
     List<Cache> findAll();
 
     @Override
-    @Query("{'_class':'ig2i.geocache.entity.Cache'}")
+    @Query("{'_class':'ig2i.geocache.entity.Cache', '_id' : ?0}")
     Optional<Cache> findById(String s);
 
     @Override
@@ -22,6 +22,6 @@ public interface CacheMongoRepository extends MongoRepository<Cache, String>  {
     void delete(Cache cache);
 
     @Override
-    @Query("{'_class':'ig2i.geocache.entity.Cache'}")
+    //@Query("{'_class':'ig2i.geocache.entity.Cache'}")
     void deleteAll();
 }

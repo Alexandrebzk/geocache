@@ -13,7 +13,9 @@ public interface CacheService {
 
     void deleteAll();
 
+    void delete(String visiteId);
+
     Cache save(Cache u);
 
-    Cache saveWithUser(Cache cache, User u);
+    Cache saveWithUser(Cache cache, String userId);
 }

@@ -1,6 +1,8 @@
 package ig2i.geocache.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -18,7 +20,8 @@ public class Lieu {
     private String id;
     @Column(name = "nom")
     private String nom;
-    @OneToMany(mappedBy = "lieu", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "lieu", cascade = CascadeType.DETACH)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Cache> caches;
 
     public Lieu() {
