@@ -1,4 +1,4 @@
-package ig2i.geocache.db;
+package ig2i.geocache.db.service;
 
 import ig2i.geocache.entity.User;
 
@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface UserService {
 
-    User findCacheById(String id);
+    User findUserById(String id);
 
     List<User> findAll();
 
     void deleteAll();
 
-    void save(User u);
+    User save(User u);
 }

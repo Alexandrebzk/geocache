@@ -1,13 +1,16 @@
 package ig2i.geocache.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 
 @Entity
-@Document
+@Document("geocache")
 public class Cache {
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     @Column(name = "description")
     private String description;
@@ -21,6 +24,52 @@ public class Cache {
     private String geolocalisation;
     @ManyToOne
     private Lieu lieu;
+    @ManyToOne
+    private User proprietaire;
+
+    public Cache(){
+
+    }
+
+    public Cache(String description, String type, String nature, String etat, String geolocalisation) {
+        this.description = description;
+        this.type = type;
+        this.nature = nature;
+        this.etat = etat;
+        this.geolocalisation = geolocalisation;
+    }
+    public Cache(String description, String type, String nature, String etat, String geolocalisation, User u) {
+        this.description = description;
+        this.type = type;
+        this.nature = nature;
+        this.etat = etat;
+        this.geolocalisation = geolocalisation;
+        this.proprietaire = u;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Lieu getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(Lieu lieu) {
+        this.lieu = lieu;
+    }
+
+    public User getProprietaire() {
+        return proprietaire;
+    }
+
+    public void setProprietaire(User proprietaire) {
+        this.proprietaire = proprietaire;
+    }
 
     public String getDescription() {
         return description;
@@ -60,5 +109,19 @@ public class Cache {
 
     public void setGeolocalisation(String geolocalisation) {
         this.geolocalisation = geolocalisation;
+    }
+
+    @Override
+    public String toString() {
+        return "\nCache{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", nature='" + nature + '\'' +
+                ", etat='" + etat + '\'' +
+                ", geolocalisation='" + geolocalisation + '\'' +
+                ", lieu=" + (lieu != null ? lieu.getNom() : "null") +
+                ", proprietaire=" + (proprietaire != null ? proprietaire.getId() : "null") +
+                '}';
     }
 }

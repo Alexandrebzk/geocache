@@ -4,9 +4,13 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Document(collection = "user")
+@Document("geocache")
 public class User {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -18,14 +22,38 @@ public class User {
     private String photo;
     @Column(name = "description")
     private String description;
+    @OneToMany(mappedBy = "proprietaire", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    private List<Cache> caches;
 
     public User() {
+        this.caches = new ArrayList<>();
     }
 
     public User(String pseudo, String photo, String description) {
         this.pseudo = pseudo;
         this.photo = photo;
         this.description = description;
+        this.caches = new ArrayList<>();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<Cache> getCaches() {
+        return caches;
+    }
+
+    public void setCaches(List<Cache> caches) {
+        this.caches = caches;
+    }
+
+    public void addCache(Cache cache) {
+        this.caches.add(cache);
     }
 
     public String getPseudo() {
@@ -54,11 +82,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
+        return "\nUser{" +
+                "id='" + id + '\'' +
                 ", pseudo='" + pseudo + '\'' +
                 ", photo='" + photo + '\'' +
                 ", description='" + description + '\'' +
+                ", caches=" + caches +
                 '}';
     }
 }

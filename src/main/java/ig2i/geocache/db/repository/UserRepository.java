@@ -1,4 +1,4 @@
-package ig2i.geocache.db;
+package ig2i.geocache.db.repository;
 
 import ig2i.geocache.entity.User;
 

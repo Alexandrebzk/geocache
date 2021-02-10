@@ -1,15 +1,18 @@
 package ig2i.geocache.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Document
+@Document("geocache")
 public class Visite {
     @Id
-    private Long id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     @Column(name = "date_passage")
     private Date date_passage;
     @Column(name = "commentaire")
@@ -17,11 +20,24 @@ public class Visite {
     @Column(name = "photo")
     private String photo;
 
-    public Long getId() {
+    public Visite() {
+    }
+
+    public Visite(Date date_passage, String commentaire, String photo) {
+        this.date_passage = date_passage;
+        this.commentaire = commentaire;
+        this.photo = photo;
+    }
+    public Visite(String commentaire, String photo) {
+        this.commentaire = commentaire;
+        this.photo = photo;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,5 +63,15 @@ public class Visite {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    @Override
+    public String toString() {
+        return "\nVisite{" +
+                "id='" + id + '\'' +
+                ", date_passage=" + date_passage +
+                ", commentaire='" + commentaire + '\'' +
+                ", photo='" + photo + '\'' +
+                '}';
     }
 }
