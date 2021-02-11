@@ -16,5 +16,11 @@ public interface CacheRepository {
 
     List<Cache> findAll();
 
+    List<Cache> findByUserId(String id);
+
+    List<Cache> findByLieuId(String id);
+
+    List<Cache> findByVisiteId(String id);
+
     Cache save(Cache u);
 }

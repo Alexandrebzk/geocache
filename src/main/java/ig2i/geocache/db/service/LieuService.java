@@ -13,4 +13,6 @@ public interface LieuService {
     void deleteAll();
 
     Lieu save(Lieu u);
+
+    void delete(String s);
 }

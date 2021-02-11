@@ -12,6 +12,8 @@ public interface VisiteRepository {
 
     void deleteAll();
 
+    void delete(Visite v);
+
     List<Visite> findAll();
 
     void save(Visite u);

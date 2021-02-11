@@ -3,6 +3,7 @@ package ig2i.geocache.entity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Document("geocache")
+@Document
 public class Cache {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -27,11 +28,14 @@ public class Cache {
     @Column(name = "geolocalisation")
     private String geolocalisation;
     @ManyToOne
+    @DBRef
     private Lieu lieu;
     @ManyToOne
+    @DBRef
     private User proprietaire;
     @OneToMany(mappedBy = "cache", cascade = CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @DBRef
     private List<Visite> visiteList = new ArrayList<>();
 
     public Cache() {

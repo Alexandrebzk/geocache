@@ -26,13 +26,30 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
+    public List<Cache> findByUserId(String id) {
+        return cacheRepository.findByUserId(id);
+    }
+
+    @Override
+    public List<Cache> findByLieuId(String id) {
+        return cacheRepository.findByLieuId(id);
+    }
+
+    @Override
+    public List<Cache> findByVisiteId(String id) {
+        return cacheRepository.findByVisiteId(id);
+    }
+
+    @Override
     public void deleteAll() {
         cacheRepository.deleteAll();
     }
+
     @Override
     public void delete(String id) {
-
-        cacheRepository.delete(cacheRepository.findById(id));
+        Cache c = cacheRepository.findById(id);
+        if (c != null)
+            cacheRepository.delete(c);
     }
 
     @Override
@@ -47,8 +64,7 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    public Cache saveWithUser(Cache cache, String userId) {
-        User u = userService.findUserById(userId);
+    public Cache saveWithUser(Cache cache, User u) {
         cacheRepository.save(cache);
         if (u != null) {
             u.addCache(cache);

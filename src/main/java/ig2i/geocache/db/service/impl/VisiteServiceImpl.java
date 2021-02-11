@@ -35,6 +35,13 @@ public class VisiteServiceImpl implements VisiteService {
     }
 
     @Override
+    public void delete(String id) {
+        Visite v = visiteRepository.findById(id);
+        if (v != null)
+            visiteRepository.delete(v);
+    }
+
+    @Override
     public List<Visite> findAll() {
         return visiteRepository.findAll();
     }
@@ -46,10 +53,8 @@ public class VisiteServiceImpl implements VisiteService {
     }
 
     @Override
-    public Visite saveWithCacheAndUser(Visite visite, String cacheId, String userId) {
+    public Visite saveWithCacheAndUser(Visite visite, Cache c, User u) {
         visiteRepository.save(visite);
-        Cache c = cacheService.findCacheById(cacheId);
-        User u = userService.findUserById(userId);
         if (c != null && u != null) {
             if (!u.hasVisite(visite)) {
                 u.addVisite(visite);
@@ -60,7 +65,7 @@ public class VisiteServiceImpl implements VisiteService {
                 cacheService.save(c);
             }
             if (!u.hasCache(c)) {
-                cacheService.saveWithUser(c, u.getId());
+                cacheService.saveWithUser(c, u);
             }
             visite.setCache(c);
             visite.setUser(u);

@@ -39,6 +39,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public void delete(User u) {
+        userJPARepository.delete(u);
+    }
+
+    @Override
     public List<User> findAll() {
         return userJPARepository.findAll();
     }

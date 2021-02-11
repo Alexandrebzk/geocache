@@ -47,4 +47,19 @@ public class CacheRepositoryImpl implements CacheRepository {
     public List<Cache> findAll() {
         return cacheJPARepository.findAll();
     }
+
+    @Override
+    public List<Cache> findByUserId(String id) {
+        return cacheJPARepository.findCacheByProprietaireId(id).orElse(null);
+    }
+
+    @Override
+    public List<Cache> findByLieuId(String id) {
+        return cacheJPARepository.findCachesByLieuId(id).orElse(null);
+    }
+
+    @Override
+    public List<Cache> findByVisiteId(String id) {
+        return cacheJPARepository.findCachesByVisiteListContains(id).orElse(null);
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableJpaRepositories(basePackages = "ig2i.geocache.db.repository.mariadb")
 @EnableMongoRepositories(basePackages = "ig2i.geocache.db.repository.mongo")
 @SpringBootApplication
-public class GeocacheApplication  {
+public class GeocacheApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GeocacheApplication.class, args);

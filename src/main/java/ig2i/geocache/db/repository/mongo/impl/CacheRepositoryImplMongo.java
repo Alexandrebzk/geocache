@@ -4,7 +4,6 @@ import ig2i.geocache.db.repository.CacheRepository;
 import ig2i.geocache.db.repository.mongo.CacheMongoRepository;
 import ig2i.geocache.entity.Cache;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,9 +25,22 @@ public class CacheRepositoryImplMongo implements CacheRepository {
     }
 
     @Override
+    public List<Cache> findByUserId(String id) {
+        return cacheMongoRepository.findCachesByProprietaireId(id).orElse(null);
+    }
+
+    @Override
+    public List<Cache> findByLieuId(String id) {
+        return cacheMongoRepository.findCachesByLieuId(id).orElse(null);
+    }
+
+    @Override
+    public List<Cache> findByVisiteId(String id) {
+        return cacheMongoRepository.findCachesByVisiteListContains(id).orElse(null);
+    }
+
+    @Override
     public Cache save(Cache c) {
-        if (c.getProprietaire() != null && c.getProprietaire().getCaches() != null)
-            c.getProprietaire().setCaches(null);
         return cacheMongoRepository.save(c);
     }
 
@@ -41,6 +53,7 @@ public class CacheRepositoryImplMongo implements CacheRepository {
     public void deleteAll() {
         cacheMongoRepository.deleteAll();
     }
+
     @Override
     public void delete(Cache c) {
         cacheMongoRepository.delete(c);

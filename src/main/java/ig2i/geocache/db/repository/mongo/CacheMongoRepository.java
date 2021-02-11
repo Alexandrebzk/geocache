@@ -2,26 +2,15 @@ package ig2i.geocache.db.repository.mongo;
 
 import ig2i.geocache.entity.Cache;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface CacheMongoRepository extends MongoRepository<Cache, String>  {
+public interface CacheMongoRepository extends MongoRepository<Cache, String> {
 
-    @Override
-    @Query("{'_class':'ig2i.geocache.entity.Cache'}")
-    List<Cache> findAll();
+    Optional<List<Cache>> findCachesByProprietaireId(String id);
 
-    @Override
-    @Query("{'_class':'ig2i.geocache.entity.Cache', '_id' : ?0}")
-    Optional<Cache> findById(String s);
+    Optional<List<Cache>> findCachesByLieuId(String id);
 
-    @Override
-    @Query("{'_class':'ig2i.geocache.entity.Cache'}")
-    void delete(Cache cache);
-
-    @Override
-    //@Query("{'_class':'ig2i.geocache.entity.Cache'}")
-    void deleteAll();
+    Optional<List<Cache>> findCachesByVisiteListContains(String id);
 }

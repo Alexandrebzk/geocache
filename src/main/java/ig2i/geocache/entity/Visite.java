@@ -1,13 +1,14 @@
 package ig2i.geocache.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Document("geocache")
+@Document
 public class Visite {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -20,8 +21,10 @@ public class Visite {
     @Column(name = "photo")
     private String photo;
     @ManyToOne
+    @DBRef
     private Cache cache;
     @ManyToOne
+    @DBRef
     private User user;
 
     public Visite() {
@@ -32,6 +35,7 @@ public class Visite {
         this.commentaire = commentaire;
         this.photo = photo;
     }
+
     public Visite(String commentaire, String photo) {
         this.commentaire = commentaire;
         this.photo = photo;

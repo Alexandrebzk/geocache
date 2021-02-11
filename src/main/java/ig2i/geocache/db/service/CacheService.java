@@ -9,13 +9,19 @@ public interface CacheService {
 
     Cache findCacheById(String id);
 
+    List<Cache> findByUserId(String id);
+
+    List<Cache> findByLieuId(String id);
+
+    List<Cache> findByVisiteId(String id);
+
     List<Cache> findAll();
 
     void deleteAll();
 
-    void delete(String visiteId);
+    void delete(String cacheId);
 
     Cache save(Cache u);
 
-    Cache saveWithUser(Cache cache, String userId);
+    Cache saveWithUser(Cache cache, User u);
 }

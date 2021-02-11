@@ -29,6 +29,11 @@ public class LieuRepositoryImpl implements LieuRepository {
     }
 
     @Override
+    public void delete(Lieu l) {
+        lieuJPARepository.delete(l);
+    }
+
+    @Override
     public void saveAll(List<Lieu> users) {
         lieuJPARepository.saveAll(users);
     }

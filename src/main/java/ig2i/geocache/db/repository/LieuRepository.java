@@ -15,4 +15,6 @@ public interface LieuRepository {
     List<Lieu> findAll();
 
     void save(Lieu u);
+
+    void delete(Lieu s);
 }

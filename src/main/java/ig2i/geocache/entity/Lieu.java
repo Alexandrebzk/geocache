@@ -3,16 +3,15 @@ package ig2i.geocache.entity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Document("geocache")
+@Document
 public class Lieu {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -22,15 +21,14 @@ public class Lieu {
     private String nom;
     @OneToMany(mappedBy = "lieu", cascade = CascadeType.DETACH)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Cache> caches;
+    @DBRef
+    private List<Cache> caches = new ArrayList<>();
 
     public Lieu() {
-        this.caches = new ArrayList<>();
     }
 
     public Lieu(String nom) {
         this.nom = nom;
-        this.caches = new ArrayList<>();
     }
 
     public String getId() {
@@ -50,10 +48,7 @@ public class Lieu {
     }
 
     public void addCache(Cache cache) {
-        if (this.caches != null)
-            this.caches = new ArrayList<>();
-        else
-            this.caches.add(cache);
+        this.caches.add(cache);
     }
 
     public String getNom() {

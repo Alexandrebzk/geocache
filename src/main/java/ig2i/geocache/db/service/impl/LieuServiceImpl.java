@@ -36,4 +36,11 @@ public class LieuServiceImpl implements LieuService {
         lieuRepository.save(u);
         return u;
     }
+
+    @Override
+    public void delete(String s) {
+        Lieu l = lieuRepository.findById(s);
+        if (l != null)
+            lieuRepository.delete(l);
+    }
 }

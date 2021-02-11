@@ -26,10 +26,6 @@ public class VisiteRepositoryImplMongo implements VisiteRepository {
 
     @Override
     public void save(Visite v) {
-        if (v.getCache() != null)
-            v.getCache().setVisiteList(null);
-        if (v.getUser() != null)
-            v.getUser().setVisiteList(null);
         visiteMongoRepository.save(v);
     }
 
@@ -41,6 +37,11 @@ public class VisiteRepositoryImplMongo implements VisiteRepository {
     @Override
     public void deleteAll() {
         visiteMongoRepository.deleteAll();
+    }
+
+    @Override
+    public void delete(Visite v) {
+        visiteMongoRepository.delete(v);
     }
 
     @Override

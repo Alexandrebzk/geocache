@@ -30,6 +30,11 @@ public class LieuRepositoryImplMongo implements LieuRepository {
     }
 
     @Override
+    public void delete(Lieu l) {
+        lieuMongoRepository.delete(l);
+    }
+
+    @Override
     public void saveAll(List<Lieu> users) {
         lieuMongoRepository.saveAll(users);
     }

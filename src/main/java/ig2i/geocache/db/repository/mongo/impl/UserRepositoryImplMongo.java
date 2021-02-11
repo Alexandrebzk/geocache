@@ -26,14 +26,12 @@ public class UserRepositoryImplMongo implements UserRepository {
 
     @Override
     public void save(User u) {
-        u.getCaches().forEach(cache -> {
-            cache.setProprietaire(null);
-            cache.getVisiteList().forEach((visite -> visite.setUser(null)));
-        });
-        u.getVisiteList().forEach(visite -> {
-            visite.setUser(null);
-        });
         userMongoRepository.save(u);
+    }
+
+    @Override
+    public void delete(User u) {
+        userMongoRepository.delete(u);
     }
 
     @Override

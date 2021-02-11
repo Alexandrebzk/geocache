@@ -39,6 +39,11 @@ public class VisiteRepositoryImpl implements VisiteRepository {
     }
 
     @Override
+    public void delete(Visite v) {
+        visiteJPARepository.delete(v);
+    }
+
+    @Override
     public List<Visite> findAll() {
         return visiteJPARepository.findAll();
     }
