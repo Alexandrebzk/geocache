@@ -38,6 +38,7 @@ public class GeocacheConsole implements CommandLineRunner {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Liste des commandes :");
+            System.out.println("\t - populate");
             System.out.println("\t - getCacheBy user|lieu|visite [id]");
             System.out.println("\t - update user|cache|lieu|visite [id]");
             System.out.println("\t - get user|cache|lieu|visite [id]|all");
