@@ -12,7 +12,7 @@ mvn clean install
 
 #### Maven dans InteliJ
 
-![config_maven](/Users/alex/Desktop/config_maven.png)
+![config_maven](./assets/config_maven.png)
 
 
 
@@ -73,7 +73,7 @@ java -jar -Dspring.profiles.active=mariadb target/geocache-1.0.jar
 
 ## Lancement InteliJ
 
-![config_spring](/Users/alex/Desktop/config_spring.png)
+![config_spring](./assets/config_spring.png)
 
 
 
