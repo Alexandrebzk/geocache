@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "utilisateur")
 @Document
 public class User {
     @Id
@@ -27,7 +28,7 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     @DBRef
     private List<Cache> caches = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.REMOVE)
     @LazyCollection(LazyCollectionOption.FALSE)
     @DBRef
     private List<Visite> visiteList = new ArrayList<>();

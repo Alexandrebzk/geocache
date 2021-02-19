@@ -12,7 +12,6 @@ import java.util.List;
 @Profile("mongodb")
 public class UserRepositoryImplMongo implements UserRepository {
 
-
     private final UserMongoRepository userMongoRepository;
 
     public UserRepositoryImplMongo(UserMongoRepository userMongoRepository) {

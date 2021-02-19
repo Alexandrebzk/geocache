@@ -25,7 +25,7 @@ public class Visite {
     private Cache cache;
     @ManyToOne
     @DBRef
-    private User user;
+    private User utilisateur;
 
     public Visite() {
     }
@@ -50,12 +50,12 @@ public class Visite {
         this.cache = cache;
     }
 
-    public User getUser() {
-        return user;
+    public User getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUtilisateur(User user) {
+        this.utilisateur = user;
     }
 
     public String getId() {
@@ -98,7 +98,7 @@ public class Visite {
                 ", commentaire='" + commentaire + '\'' +
                 ", photo='" + photo + '\'' +
                 ", cache=" + (cache != null ? cache.getId() : "null") +
-                ", user=" + (user != null ? user.getId() : "null") +
+                ", user=" + (utilisateur != null ? utilisateur.getId() : "null") +
                 '}';
     }
 }

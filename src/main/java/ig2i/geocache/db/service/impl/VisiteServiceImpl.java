@@ -68,7 +68,7 @@ public class VisiteServiceImpl implements VisiteService {
                 cacheService.saveWithUser(c, u);
             }
             visite.setCache(c);
-            visite.setUser(u);
+            visite.setUtilisateur(u);
             visiteRepository.save(visite);
         }
         return visite;
