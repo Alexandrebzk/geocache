@@ -7,10 +7,10 @@ Belcour Hadrien - Barczyk Alexandre
 #### Maven
 
 ````bash
-mvn clean install
+mvn clean install -DskipTests=true
 ````
 
-#### Maven dans InteliJ
+#### Maven dans IntelliJ
 
 ![config_maven](./assets/config_maven.png)
 
@@ -71,7 +71,7 @@ java -jar -Dspring.profiles.active=mariadb target/geocache-1.0.jar
 
 
 
-## Lancement InteliJ
+## Lancement IntelliJ
 
 ![config_spring](./assets/config_spring.png)
 
